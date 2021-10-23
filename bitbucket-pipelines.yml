@@ -11,6 +11,11 @@ pipelines:
         name: Build and test - use puppeteer provided chromium
         script:
         - apt-get update && apt-get install -yq libgconf-2-4
+        - echo "deb http://us-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty multiverse
+            deb http://us-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty-updates multiverse
+            deb http://us-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse" | sudo tee /etc/apt/sources.list.d/multiverse.list
+            sudo apt-get update
+            sudo apt-get install ttf-mscorefonts-installer
         - >
           apt-get update && apt-get install -y wget --no-install-recommends && \
              wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -  && \
