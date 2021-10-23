@@ -3,25 +3,15 @@
 #  This template allows you to validate your NodeJS code.
 #  The workflow allows running tests and code linting on the default branch.
 
-image: node:latest
+image: node:16
 
 pipelines:
   default:
-    - step:
-        name: Build and test - use puppeteer provided chromium
-        script:
-        - apt-get update && apt-get install -yq libgconf-2-4
-        - echo "deb http://us-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty multiverse
-            deb http://us-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty-updates multiverse
-            deb http://us-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse" | su tee /etc/apt/sources.list.d/multiverse.list
-            su apt-get update
-            su apt-get install ttf-mscorefonts-installer
-        - >
-          apt-get update && apt-get install -y wget --no-install-recommends && \
-             wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -  && \
-             sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
-             apt-get update && \
-             apt-get install -y google-chrome-unstable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst ttf-freefont --no-install-recommends
-             # Dont worry about cleaning up files left after installation.
-        - npm install
-        - npm test
+    - parallel:
+        - step:
+            name: Build and Test
+            caches:
+              - node
+            script:
+              - npm install
+              - npm test
