@@ -3,7 +3,7 @@
 #  This template allows you to validate your NodeJS code.
 #  The workflow allows running tests and code linting on the default branch.
 
-image: sivesind/chrome-node-js
+image: node:16
 
 pipelines:
   default:
