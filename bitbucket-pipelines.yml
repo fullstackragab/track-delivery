@@ -13,6 +13,6 @@ pipelines:
             caches:
               - node
             script:
-              -
+              - export CHROME_BIN=/usr/bin/google-browser
               - npm install
               - npm test
