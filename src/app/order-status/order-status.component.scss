@@ -1,0 +1,181 @@
+:host {
+  display: block;
+}
+.container {
+  margin: 0 auto;
+  width: 420px;
+  height: 600px;
+  @media (min-width: 426px) {
+    width: 100%;
+    height: 600px;
+  }
+  @media (min-width: 1024px) {
+    width: 100%;
+    height: 600px;
+    .cards {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      .card {
+        width: 300px;
+        margin: 0px 5px;
+      }
+    }
+  }
+  .m-container {
+    height: 360px;
+    width: 100%;
+  }
+  mgl-map {
+    height: 360px;
+    width: 100%;
+    i.bi {
+      font-size: x-large;
+    }
+    .address {
+      width: 160px;
+      height: 80px;
+      background-color: rgba(255, 255, 255, 0.7);
+      font-weight: bold;
+      border-radius: 10px;
+      text-align: center;
+      padding: 5px;
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      z-index: 150;
+      visibility: hidden;
+    }
+    .vehicle {
+      // position: absolute;
+      text-align: center;
+      // top: -20px;
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background-color: white;
+    }
+    .marker {
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      background-color: rgb(16, 76, 206);
+      span {
+        font-weight: bold;
+        position: relative;
+        &.start {
+          top: 15px;
+          left: -5px;
+        }
+        &.end {
+          top: -15px;
+          left: -5px;
+        }
+      }
+    }
+    .current {
+      background-color: red;
+    }
+  }
+
+  .vehicle-control {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    justify-content: flex-end;
+    .vehicle-label {
+      padding-top: 6px;
+      margin-right: 5px;
+    }
+    select {
+      width: 120px;
+    }
+  }
+
+  .status {
+    width: 100%;
+    height: 100%;
+    margin: 10px;
+    .title {
+      margin: 10px;
+      font-size: large;
+    }
+    .card-title {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .check {
+        width: 30px;
+        height: 30px;
+        background-color: gray;
+        margin-right: 20px;
+        border-radius: 50%;
+        @media (min-width: 1024px) {
+          margin-right: 5px;
+        }
+        .bi {
+          font-size: x-large;
+          color: white;
+          position: relative;
+          top: -3px;
+          text-align: center;
+          left: 2px;
+        }
+      }
+      .done {
+        background-color: green;
+        .bi {
+          font-size: x-large;
+          color: white;
+          position: relative;
+          top: -3px;
+          text-align: center;
+          left: 2px;
+        }
+      }
+    }
+    .curior {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+      padding: 10px;
+      border: 2px solid green;
+      border-radius: 10px;
+      @media (min-width: 426px) {
+        border: none;
+      }
+      .curior-label {
+        font-size: small;
+        margin: -5px;
+        margin-left: 3px;
+      }
+      .curior-title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px;
+        @media (min-width: 426px) {
+          justify-content: flex-start;
+        }
+      }
+      .call {
+        margin-right: 5px;
+        padding-top: 2px;
+        background-color: green;
+        width: 70px;
+        height: 30px;
+        text-align: center;
+        color:white;
+        cursor: pointer;
+        border-radius: 30px;
+        @media (min-width: 426px) {
+          margin-left: 60px;
+        }
+      }
+    }
+    .order-status {
+      font-size: large;
+      margin: 10px;
+    }
+  }
+}

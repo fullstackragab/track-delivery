@@ -1,0 +1,62 @@
+<div class="container">
+  <!-- <div class='m-container'> -->
+  <mgl-map (load)="map = $event;drawRoutes()" [style]="'mapbox://styles/mapbox/streets-v11'" [zoom]="[15]"
+    [center]="[18.063240, 59.335291]">
+    <mgl-marker *ngFor='let point of points; let i = index;' [lngLat]="[point.location.long, point.location.lat]">
+      <div
+      [ngClass]="{marker: !isCurrentPoint(point)}"
+      appAddress
+      >
+        <div class="address">{{ point.address }}</div>
+        <div class="vehicle" *ngIf="isCurrentPoint(point)">
+          <i *ngIf="vehicle == 1" class="bi bi-bicycle"></i>
+          <i *ngIf="vehicle == 2" class="bi bi-truck"></i>
+        </div>
+        <span [ngClass]="{start: i === 0, end: i === points.length - 1}">
+          {{ i === 0 ? 'Start' : '' }}
+          {{ i === points.length -1 ? 'End' : ''}}
+        </span>
+      </div>
+    </mgl-marker>
+  </mgl-map>
+  <!-- </div> -->
+
+  <div class="controls">
+    <div class="vehicle-control">
+      <div class="vehicle-label">Vehicle</div>
+      <select class="form-select" (change)='onChange($any($event).target.value)'>
+       <option value='1'>Bicycle</option>
+       <option value='2'>Car</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="status">
+    <div class="title">Track order</div>
+    <div class="curior">
+      <div class="curior-label">Curior</div>
+      <div class="curior-title">
+        <div class="name">Mikael Johan</div>
+        <div class="call">Call</div>
+      </div>
+    </div>
+    <div class="order-status">
+      Order status
+    </div>
+    <div class="cards">
+      <div *ngFor='let point of points; let i = index' class="point">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">
+            <div>{{ point.title }}</div>
+            <div class="check" [ngClass]="{done: isDone(i)}">
+              <i class="bi bi-check-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</div>
