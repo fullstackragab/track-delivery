@@ -13,5 +13,6 @@ pipelines:
             caches:
               - node
             script:
+              - export CHROME_BIN='/usr/bin/chromium'
               - npm install
               - npm test
