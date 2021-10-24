@@ -1,4 +1,11 @@
 <div class="container">
-  <ng2-completer [ngModel]='address' inputClass='form-input' (selected)='onSelected($event)' [datasource]='datasource' placeholder="Search" (input)='onInput($any($event).target.value)' [minSearchLength]="3"></ng2-completer>
+  <ng-select [items]="data"
+           bindLabel="address"
+           bindValue="id"
+           (search)='onSearch($event)'
+           (change)='onChange($event)'
+           [(ngModel)]="selectedAddress">
+</ng-select>
   <button (click)='onSave()' class="save btn btn-primary">Save</button>
+  <div *ngIf='saved' class="alert alert-success">Saved!!</div>
 </div>

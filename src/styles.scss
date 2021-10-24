@@ -2,10 +2,21 @@
 @import '~mapbox-gl/dist/mapbox-gl.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~bootstrap-icons/font/bootstrap-icons.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 .completer-input {
   width: 360px;
 }
 .completer-input:focus {
   outline: none;
+}
+.completer-dropdown-holder {
+  width: 100%;
+}
+
+.completer-dropdown {
+  width: 100%;
+}
+.completer-row-wrapper {
+  width: 100%;
 }

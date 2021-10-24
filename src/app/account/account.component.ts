@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { CompleterData, CompleterService } from 'ng2-completer';
-import { environment } from 'src/environments/environment';
+import { AddressService } from '../address.service';
 import { OrderStatusService } from '../order-status.service';
 
 @Component({
@@ -10,49 +8,61 @@ import { OrderStatusService } from '../order-status.service';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-  datasource!: CompleterData;
-  searchData = [];
-  address = "";
-  location: {long: number, lat: number} = {
-    long: 0,
-    lat: 0
-  };
+  data: {
+    id: string,
+    address: string,
+    center: number[]
+  }[] = [{
+    "id": "address.5058343513358978",
+    "address": "Apelbergsgatan 54, 111 36 Stockholm, Sweden",
+    "center": [
+        18.059727,
+        59.335169
+    ]
+}];
+  selectedAddress =  "address.5058343513358978"
+  selectedItem = {
+    "id": "address.5058343513358978",
+    "address": "Apelbergsgatan 54, 111 36 Stockholm, Sweden",
+    "center": [
+        18.059727,
+        59.335169
+    ]
+}
+  saved = false;
 
   constructor(
-    private http: HttpClient,
-    private orderStatusService: OrderStatusService,
-    private completerService: CompleterService
+    private addressService: AddressService,
+    private orderStatusService: OrderStatusService
   ) {}
 
   ngOnInit(): void {
     const p = this.orderStatusService.getCurrentAddress();
-    this.address = p.address,
-    this.location.long = p.location.long,
-    this.location.lat = p.location.lat
+    this.data = this.addressService.getInitialData()
+    this.selectedAddress = this.addressService.getCurrentItem().id
   }
 
-  onInput(str: string) {
-    if(str && str.length > 2)
-    this.http
-      .get(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${str}.json?access_token=${environment.mapboxToken}`
-      )
-      .subscribe((res: any) => {
-        if (res.features && res.features.length > 0) {
-          this.datasource = this.completerService.local(res.features, 'place_name', 'place_name')//.map((feature: any) => feature.place_name)
-        }
-      });
+  onSearch(event: any) {
+    if (event.term && event.term.length > 2 )
+      this.addressService.getData(event.term).subscribe(data => this.data = data)
   }
 
   onSave() {
-    this.orderStatusService.updateAddress(this.address, this.location.long, this.location.lat)
+    this.orderStatusService.updateAddress(
+      this.selectedItem.address,
+      this.selectedItem.center[0],
+      this.selectedItem.center[1]
+    );
+    this.saved = true;
   }
 
-  onSelected(event: any) {
-    this.address = event.title
-    this.location = {
-      long: event.originalObject.center[0],
-      lat: event.originalObject.center[1]
+  onChange(item: any) {
+    if (item) {
+      this.data = []
+      this.data.push(item)
+      this.selectedAddress = item.id
+      this.selectedItem = item
+      this.addressService.setCurrentItem(item)
     }
   }
 }
