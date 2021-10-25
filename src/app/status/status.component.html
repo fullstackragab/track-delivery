@@ -1,0 +1,22 @@
+<div class="container">
+
+  <div class="status">
+    <div class="order-status">
+      Order status
+    </div>
+    <div class="cards">
+      <div *ngFor='let point of points; let i = index' class="point">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">
+              <div>{{ point.title }}</div>
+              <div class="check" [ngClass]="{done: isDone(i)}">
+                <i class="bi bi-check-lg"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

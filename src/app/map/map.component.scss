@@ -1,0 +1,56 @@
+
+  .m-container {
+    height: 360px;
+    width: 100%;
+  }
+  mgl-map {
+    height: 360px;
+    width: 100%;
+    i.bi {
+      font-size: x-large;
+    }
+    .address {
+      width: 160px;
+      height: 80px;
+      background-color: rgba(255, 255, 255, 0.7);
+      font-weight: bold;
+      border-radius: 10px;
+      text-align: center;
+      padding: 5px;
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      z-index: 150;
+      visibility: hidden;
+    }
+    .vehicle {
+      // position: absolute;
+      text-align: center;
+      // top: -20px;
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background-color: white;
+    }
+    .marker {
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      background-color: rgb(16, 76, 206);
+      span {
+        font-weight: bold;
+        position: relative;
+        &.start {
+          top: 15px;
+          left: -5px;
+        }
+        &.end {
+          top: -15px;
+          left: -5px;
+        }
+      }
+    }
+    .current {
+      background-color: red;
+    }
+  }

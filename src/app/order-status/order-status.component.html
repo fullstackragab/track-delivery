@@ -1,19 +1,11 @@
 <div class="container">
   <div class="title">Track order</div>
-  <div #map class='m-container'>
-  </div>
+  <app-map [points]='points' [currentPoint]='currentPoint' [currentIndex]='currentIndex' [start]='start' [vehicle]='vehicle'></app-map>
+  <app-vehicle (changed)='onChange($event)'></app-vehicle>
+  <app-status [points]='points' [currentIndex]='currentIndex'></app-status>
 
-  <div class="controls">
-    <div class="vehicle-control">
-      <div class="vehicle-label">Vehicle</div>
-      <select class="form-select" (change)='onChange($any($event).target.value)'>
-        <option value='1'>Bicycle</option>
-        <option value='2'>Car</option>
-      </select>
-    </div>
-  </div>
 
-  <div class="status">
+  <!-- <div class="status">
     <div class="title">Track order</div>
     <div class="curior">
       <div class="curior-label">Curior</div>
@@ -22,23 +14,5 @@
         <div class="call">Call</div>
       </div>
     </div>
-    <div class="order-status">
-      Order status
-    </div>
-    <div class="cards">
-      <div *ngFor='let point of points; let i = index' class="point">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-title">
-              <div>{{ point.title }}</div>
-              <div class="check" [ngClass]="{done: isDone(i)}">
-                <i class="bi bi-check-lg"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+  </div> -->
 </div>

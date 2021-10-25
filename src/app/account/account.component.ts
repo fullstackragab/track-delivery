@@ -37,7 +37,6 @@ export class AccountComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const p = this.orderStatusService.getCurrentAddress();
     this.data = this.addressService.getInitialData()
     this.selectedAddress = this.addressService.getCurrentItem().id
   }

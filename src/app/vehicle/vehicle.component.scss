@@ -1,0 +1,14 @@
+
+  .vehicle-control {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    justify-content: flex-end;
+    .vehicle-label {
+      padding-top: 6px;
+      margin-right: 5px;
+    }
+    select {
+      width: 120px;
+    }
+  }

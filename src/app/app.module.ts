@@ -11,13 +11,19 @@ import { AccountComponent } from './account/account.component';
 import { HomeComponent } from './home/home.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
+import { MapComponent } from './map/map.component';
+import { VehicleComponent } from './vehicle/vehicle.component';
+import { StatusComponent } from './status/status.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OrderStatusComponent,
     AccountComponent,
-    HomeComponent
+    HomeComponent,
+    MapComponent,
+    VehicleComponent,
+    StatusComponent
   ],
   imports: [
     BrowserModule,
